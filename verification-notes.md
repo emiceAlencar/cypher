@@ -39,3 +39,11 @@ O span de atalho foi removido completamente do botão Buscar. Também foram remo
 ## Verificação da edição de 17/09/2026 — padding do botão Buscar
 
 A edição gerou atributos `style` duplicados e foi corrigida. O padding solicitado foi aplicado de forma sustentável via `.topbar-search`: 10px à esquerda e 70px à direita no desktop, com override para 10px em telas de até 560px. A captura desktop confirmou o espaço ampliado; a captura mobile confirmou o botão compacto e o header sem quebra. TypeScript, build e validação de JSX passaram.
+
+## Verificação da tela de Configurações — 17/09/2026
+
+A nova tela foi anexada à rota existente `/settings` e ao item já presente da sidebar, sem substituir páginas anteriores. No desktop, a composição usa índice lateral, cards de controle e hierarquia editorial coerente com o CYPHER. No mobile, o índice vira uma faixa horizontal navegável e os cards se empilham com controles legíveis. A tela apresenta Conta, Perfil Profissional, Privacidade e Visibilidade, Descoberta, Aparência e Ajuda e Sobre, além de Sair da conta separado.
+
+## Verificação final de Configurações — tema e integração
+
+O login permanece visualmente intacto, com o novo seletor de tema discreto abaixo das ações existentes. O mesmo estado em memória do `ThemeProvider` é usado pelo login e por Configurações → Aparência, sem localStorage, sessionStorage, API ou backend. A rota `/settings` está ligada ao item Configurações já existente na sidebar. Arquivos da nova tela, contexto, entrypoint e estilos foram verificados; TypeScript e build de produção passaram.

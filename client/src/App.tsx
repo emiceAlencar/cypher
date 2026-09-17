@@ -34,6 +34,8 @@ import {
   Zap,
 } from "lucide-react";
 import SidebarNav from "./components/SidebarNav";
+import SettingsPage from "./pages/SettingsPage";
+import { useTheme } from "./contexts/ThemeContext";
 import "./index.css";
 
 type IconType = typeof Home;
@@ -113,6 +115,7 @@ function getRouteContent(location: string) {
   if (location.startsWith("/beats")) return { eyebrow: "Banco de Beats", node: <BeatsPage /> };
   if (location.startsWith("/central")) return { eyebrow: "Cypher Central", node: <CentralPage /> };
   if (location.startsWith("/profile")) return { eyebrow: "Meu perfil", node: <ProfilePage /> };
+  if (location.startsWith("/settings")) return { eyebrow: "Configurações", node: <SettingsPage /> };
   return { eyebrow: "Visão geral", node: <DashboardPage /> };
 }
 
@@ -187,6 +190,7 @@ function AuthFrame({ children, note }: { children: ReactNode; note: string }) {
 
 function LoginPage() {
   const [, navigate] = useLocation();
+  const { theme, setTheme } = useTheme();
   return (
     <AuthFrame note="Encontre profissionais. Organize suas obras. Faça a cena avançar.">
       <div className="auth-mobile-logo"><Logo /></div>
@@ -209,6 +213,7 @@ function LoginPage() {
       </form>
       <div className="auth-divider"><span>ou</span></div>
       <button className="button button-outline full" onClick={() => { navigate("/dashboard"); toast("Entrando como visitante"); }}>Entrar como visitante</button>
+      <div className="auth-theme-control" aria-label="Tema da interface"><span>Tema</span><button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")}>Claro</button><button className={theme === "dark" ? "active" : ""} onClick={() => setTheme("dark")}>Escuro</button></div>
       <p className="auth-switch">Ainda não está no Cypher? <a href="/register">Criar conta</a></p>
     </AuthFrame>
   );
