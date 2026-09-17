@@ -221,7 +221,7 @@ function LoginPage() {
           <label className="check-label"><input type="checkbox" /> Lembrar de mim</label>
           <button type="button" className="auth-forgot" onClick={() => toast("Vamos enviar as instruções para o seu e-mail.")}>Esqueci minha senha</button>
         </div>
-        <button className="button button-lime full" type="submit">Entrar <ArrowUpRight size={17} /></button>
+        <button className="button button-lime full" type="submit" style={{color: '#000000'}}>Entrar <ArrowUpRight size={17} style={{color: '#000000'}} /></button>
       </form>
       <div className="auth-divider"><span>ou</span></div>
       <button className="button button-outline full" onClick={() => { startSession("guest"); navigate("/dashboard"); toast("Entrando como visitante"); }}>Entrar como visitante</button>

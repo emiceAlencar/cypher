@@ -55,3 +55,7 @@ A abertura direta de `/settings` sem sessão redirecionou imediatamente para `/l
 A opção “Entrar como visitante” foi testada: somente após o clique explícito o dashboard abriu e a sessão visitante foi criada. Assim, a abertura direta do produto não cria mais acesso implícito; o usuário sempre começa no Login.
 
 Abertura direta de `/register` também foi testada e redirecionou para `/login`; o cadastro continua disponível apenas pelo botão “Criar conta” dentro do Login. O bloqueio completo evita que links de recuperação ou URLs internas criem acesso implícito.
+
+## Verificação do botão Entrar — 17/09/2026
+
+O botão principal de Login recebeu texto e ícone em preto (`#000000`) sobre o fundo verde-lima, conforme solicitado. A alteração foi conferida no JSX, sem atributos duplicados ou erro de compilação; o fluxo de autenticação e o bloqueio de rotas continuam preservados.
