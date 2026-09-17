@@ -59,3 +59,7 @@ Abertura direta de `/register` também foi testada e redirecionou para `/login`;
 ## Verificação do botão Entrar — 17/09/2026
 
 O botão principal de Login recebeu texto e ícone em preto (`#000000`) sobre o fundo verde-lima, conforme solicitado. A alteração foi conferida no JSX, sem atributos duplicados ou erro de compilação; o fluxo de autenticação e o bloqueio de rotas continuam preservados.
+
+## Correção da navegação para Configurações — 17/09/2026
+
+A sidebar foi convertida de anchors HTML para links SPA do Wouter, evitando reload e perda da sessão em memória. Também foi adicionada persistência limitada à aba via `sessionStorage`, removida no logout. Teste no navegador: após entrar explicitamente como visitante, clicar em Configurações abriu `/settings` normalmente, sem retornar ao Login.

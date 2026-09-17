@@ -1,5 +1,6 @@
 import { useState, type ComponentType } from "react";
 import { Award, BookOpen, CalendarDays, ChevronDown, ChevronRight, Disc3, FileText, Home, Search, Settings2, UserRound } from "lucide-react";
+import { Link } from "wouter";
 
 type IconType = ComponentType<{ size?: number; className?: string }>;
 type NavItem = { label: string; href: string; icon: IconType; badge?: string };
@@ -23,11 +24,11 @@ const navItems: NavItem[] = [
 function NavLink({ item, active, onNavigate }: { item: NavItem; active: boolean; onNavigate: () => void }) {
   const Icon = item.icon;
   return (
-    <a href={item.href} onClick={onNavigate} className={active ? "side-link active" : "side-link"}>
+    <Link href={item.href} onClick={onNavigate} className={active ? "side-link active" : "side-link"}>
       <Icon size={17} />
       <span>{item.label}</span>
       {item.badge && <b>{item.badge}</b>}
-    </a>
+    </Link>
   );
 }
 
@@ -38,10 +39,10 @@ export default function SidebarNav({ location, mobileNav, onClose, onNavigate }:
     <aside className={mobileNav ? "sidebar sidebar-open" : "sidebar"}>
       <div className="sidebar-top">
         <div className="sidebar-brand-row">
-          <a href="/dashboard" className="logo logo-compact" aria-label="Ir para o início">
+          <Link href="/dashboard" className="logo logo-compact" aria-label="Ir para o início">
             <span className="logo-mark"><span /> <span /> <span /></span>
             <span className="logo-word">CYPHER</span>
-          </a>
+          </Link>
           <button className="icon-button mobile-close" onClick={onClose} aria-label="Fechar menu"><span aria-hidden="true">×</span></button>
         </div>
         <label className="workspace-chip" htmlFor="workspace-select">
@@ -68,7 +69,7 @@ export default function SidebarNav({ location, mobileNav, onClose, onNavigate }:
           <div className="rep-bar"><i /></div>
           <p>+6 desde sua última participação</p>
         </div>
-        <a href="/profile" className="user-mini" onClick={onNavigate} aria-label="Abrir perfil de Marina Costa"><div className="avatar avatar-yellow">MC</div><div><strong>Marina Costa</strong><span>Rapper / MC</span></div><ChevronRight size={15} /></a>
+        <Link href="/profile" className="user-mini" onClick={onNavigate} aria-label="Abrir perfil de Marina Costa"><div className="avatar avatar-yellow">MC</div><div><strong>Marina Costa</strong><span>Rapper / MC</span></div><ChevronRight size={15} /></Link>
       </div>
     </aside>
   );
