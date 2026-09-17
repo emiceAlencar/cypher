@@ -98,7 +98,7 @@ function AppShell() {
         <header className="topbar">
           <button className="icon-button mobile-menu" onClick={() => setMobileNav(true)} aria-label="Abrir menu"><Menu size={20} /></button>
           <div className="breadcrumbs"><span>Workspace</span><ChevronRight size={14} /><strong>{content.eyebrow}</strong></div>
-          <div className="topbar-actions">{(location === "/" || location === "/dashboard") && <button className="topbar-search" onClick={() => toast("Busca rápida ativada")} aria-label="Buscar"><Search size={16} /> Buscar <span className="shortcut">⌘ K</span></button>}<button className="icon-button" onClick={() => toast("Você está em dia — nenhuma notificação nova.")} aria-label="Notificações"><Bell size={18} /><i className="notification-dot" /></button><div className="topbar-avatar">MC</div></div>
+          <div className="topbar-actions">{(location === "/" || location === "/dashboard") && <button className="topbar-search" onClick={() => toast("Busca rápida ativada")} aria-label="Buscar"><Search size={16} /> Buscar</button>}<button className="icon-button" onClick={() => toast("Você está em dia — nenhuma notificação nova.")} aria-label="Notificações"><Bell size={18} /><i className="notification-dot" /></button><div className="topbar-avatar">MC</div></div>
         </header>
         <div className="page-content">{content.node}</div>
       </main>

@@ -31,3 +31,7 @@ A captura desktop confirmou o botão `Buscar` no topbar, com fundo bege levement
 ## Verificação da edição de 17/09/2026 — ajuste mobile do header
 
 O header mobile foi compactado: o breadcrumb agora mantém uma linha truncada sem quebra, o botão `Buscar` permanece legível com lupa e o atalho `⌘ K` é ocultado apenas em telas estreitas para evitar compressão. A nova captura mobile confirmou o resultado; TypeScript e build de produção passaram.
+
+## Verificação da edição de 17/09/2026 — limpeza do header
+
+O span de atalho foi removido completamente do botão Buscar. Também foram removidos os estilos inline indevidos que haviam sido aplicados ao container, ícone, notificações e avatar; a aparência volta a ser controlada pelas classes CSS. A captura desktop confirmou o botão bege compacto sem atalho visual, e TypeScript/build passaram.
