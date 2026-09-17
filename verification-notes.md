@@ -35,3 +35,7 @@ O header mobile foi compactado: o breadcrumb agora mantém uma linha truncada se
 ## Verificação da edição de 17/09/2026 — limpeza do header
 
 O span de atalho foi removido completamente do botão Buscar. Também foram removidos os estilos inline indevidos que haviam sido aplicados ao container, ícone, notificações e avatar; a aparência volta a ser controlada pelas classes CSS. A captura desktop confirmou o botão bege compacto sem atalho visual, e TypeScript/build passaram.
+
+## Verificação da edição de 17/09/2026 — padding do botão Buscar
+
+A edição gerou atributos `style` duplicados e foi corrigida. O padding solicitado foi aplicado de forma sustentável via `.topbar-search`: 10px à esquerda e 70px à direita no desktop, com override para 10px em telas de até 560px. A captura desktop confirmou o espaço ampliado; a captura mobile confirmou o botão compacto e o header sem quebra. TypeScript, build e validação de JSX passaram.
