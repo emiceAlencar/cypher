@@ -68,7 +68,7 @@ export default function SidebarNav({ location, mobileNav, onClose, onNavigate }:
           <div className="rep-bar"><i /></div>
           <p>+6 desde sua última participação</p>
         </div>
-        <div className="user-mini"><div className="avatar avatar-yellow">MC</div><div><strong>Marina Costa</strong><span>Rapper / MC</span></div><ChevronRight size={15} /></div>
+        <a href="/profile" className="user-mini" onClick={onNavigate} aria-label="Abrir perfil de Marina Costa"><div className="avatar avatar-yellow">MC</div><div><strong>Marina Costa</strong><span>Rapper / MC</span></div><ChevronRight size={15} /></a>
       </div>
     </aside>
   );

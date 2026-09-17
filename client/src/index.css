@@ -75,6 +75,8 @@ button, a, input, select, textarea { outline-color: var(--lime); }
 .rep-bar i { display: block; width: 78%; height: 100%; background: var(--lime); border-radius: inherit; }
 .reputation-mini p { margin: 8px 0 0; color: #748071; font-size: 10px; }
 .user-mini { display: flex; align-items: center; gap: 9px; padding: 11px 8px 2px; border-top: 1px solid #303a2e; }
+.user-mini:hover { color: inherit; background: rgba(200,242,43,.08); border-radius: 8px; }
+.user-mini:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
 .user-mini > div:nth-child(2) { flex: 1; min-width: 0; }
 .user-mini strong, .user-mini span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .user-mini strong { color: var(--white); font-size: 11px; }
@@ -100,6 +102,7 @@ button, a, input, select, textarea { outline-color: var(--lime); }
 .dashboard-description { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; max-width: 790px !important; }
 .dashboard-description > span { flex: 1 1 320px; }
 .dashboard-description .button { flex: 0 0 auto; }
+.dashboard-search-button { min-height: 40px; padding-inline: 15px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 0 17px; border-radius: 9px; font-size: 12px; font-weight: 700; cursor: pointer; transition: transform .15s ease, box-shadow .18s ease, background .18s ease; white-space: nowrap; }
 .button:hover { box-shadow: 0 9px 18px rgba(16,20,15,.12); }
 .button-dark { background: var(--ink); color: var(--white); }

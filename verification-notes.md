@@ -19,3 +19,7 @@ A busca rápida foi reposicionada para acompanhar a descrição do dashboard, fo
 ## Verificação da edição de 17/09/2026 — workspace
 
 O workspace deixou de ser um `div` estático e agora é um `<select>` controlado com opções Espaço de trabalho, Coletivo Linha 5 e Estudos Cypher. O botão de fechar foi ajustado no cabeçalho da sidebar com alinhamento e área de clique mais previsíveis. A captura desktop confirmou o novo visual sem regressões; TypeScript e build continuam aprovados.
+
+## Verificação da edição de 17/09/2026 — perfil e busca
+
+A home mostra o botão `Buscar` com lupa no header contextual, mantendo o alinhamento do texto introdutório e o estilo geral escuro/lima. O bloco Marina Costa na sidebar agora é clicável e leva à página Meu perfil; a captura confirmou o estado ativo do item de navegação e o carregamento correto do perfil.
