@@ -3,6 +3,7 @@ import { ArrowUpRight, Check, ChevronRight, ExternalLink, Eye, HelpCircle, LockK
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 import { useTheme, type Theme } from "../contexts/ThemeContext";
+import { useSession } from "../contexts/SessionContext";
 
 type ToggleProps = { label: string; description: string; checked: boolean; onChange: () => void };
 
@@ -33,6 +34,7 @@ const genres = ["Boom Bap", "Trap", "Drill", "Grime", "R&B", "Funk", "Afrobeat"]
 export default function SettingsPage() {
   const [, navigate] = useLocation();
   const { theme, setTheme } = useTheme();
+  const { endSession } = useSession();
   const [activeSection, setActiveSection] = useState("Conta");
   const [publicProfile, setPublicProfile] = useState(true);
   const [searchable, setSearchable] = useState(true);
@@ -47,7 +49,7 @@ export default function SettingsPage() {
   const sections = ["Conta", "Perfil Profissional", "Privacidade e Visibilidade", "Descoberta", "Aparência", "Ajuda e Sobre"];
   const toggleGenre = (genre: string) => setSelectedGenres((current) => current.includes(genre) ? current.filter((item) => item !== genre) : [...current, genre]);
   const chooseTheme = (nextTheme: Theme) => { setTheme(nextTheme); toast(`Tema ${nextTheme === "dark" ? "escuro" : "claro"} aplicado.`); };
-  const signOut = () => { navigate("/login"); toast("Você saiu da sua conta."); };
+  const signOut = () => { endSession(); navigate("/login"); toast("Você saiu da sua conta."); };
 
   return <div className="settings-page">
     <div className="settings-intro"><div><div className="eyebrow">CONTROLE DO SEU ESPAÇO</div><h1>Configurações</h1><p>Controle sua conta e a forma como você vive a cena dentro do Cypher.</p></div><div className="settings-mark"><span>06</span><small>áreas de controle</small></div></div>
@@ -91,7 +93,7 @@ export default function SettingsPage() {
       </main>
     </div>
     {showPassword && <SettingsModal title="Alterar senha" onClose={() => setShowPassword(false)}><p className="modal-copy">Crie uma nova senha para continuar protegendo seu espaço.</p><label className="modal-field">Senha atual<input type="password" placeholder="••••••••" /></label><label className="modal-field">Nova senha<input type="password" placeholder="Digite uma nova senha" /></label><div className="modal-actions"><button className="button button-outline" onClick={() => setShowPassword(false)}>Cancelar</button><button className="button button-lime" onClick={() => { setShowPassword(false); toast("Senha atualizada."); }}>Atualizar senha</button></div></SettingsModal>}
-    {showDeactivate && <SettingsModal title="Desativar conta" onClose={() => setShowDeactivate(false)}><p className="modal-copy">Seu perfil deixará de aparecer para outras pessoas enquanto a conta estiver desativada.</p><div className="modal-actions"><button className="button button-outline" onClick={() => setShowDeactivate(false)}>Manter conta</button><button className="button button-dark" onClick={() => { setShowDeactivate(false); toast("Conta desativada."); navigate("/login"); }}>Desativar conta</button></div></SettingsModal>}
+    {showDeactivate && <SettingsModal title="Desativar conta" onClose={() => setShowDeactivate(false)}><p className="modal-copy">Seu perfil deixará de aparecer para outras pessoas enquanto a conta estiver desativada.</p><div className="modal-actions"><button className="button button-outline" onClick={() => setShowDeactivate(false)}>Manter conta</button><button className="button button-dark" onClick={() => { setShowDeactivate(false); endSession(); toast("Conta desativada."); navigate("/login"); }}>Desativar conta</button></div></SettingsModal>}
   </div>;
 }
 

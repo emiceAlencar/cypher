@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Toaster, toast } from "sonner";
 import { Route, Switch, useLocation } from "wouter";
 import {
@@ -36,6 +36,7 @@ import {
 import SidebarNav from "./components/SidebarNav";
 import SettingsPage from "./pages/SettingsPage";
 import { useTheme } from "./contexts/ThemeContext";
+import { useSession } from "./contexts/SessionContext";
 import "./index.css";
 
 type IconType = typeof Home;
@@ -75,6 +76,16 @@ function Logo({ compact = false }: { compact?: boolean }) {
 }
 
 function App() {
+  const [location, navigate] = useLocation();
+  const { mode, authScreen } = useSession();
+  const registerAllowed = location === "/register" && authScreen === "register";
+
+  useEffect(() => {
+    if (mode === "signed-out" && location !== "/login" && !registerAllowed) navigate("/login", { replace: true });
+  }, [location, mode, navigate, registerAllowed]);
+
+  if (mode === "signed-out" && location !== "/login" && !registerAllowed) return null;
+
   return (
     <>
       <Toaster position="bottom-right" theme="dark" richColors />
@@ -191,13 +202,14 @@ function AuthFrame({ children, note }: { children: ReactNode; note: string }) {
 function LoginPage() {
   const [, navigate] = useLocation();
   const { theme, setTheme } = useTheme();
+  const { startSession, openRegister } = useSession();
   return (
     <AuthFrame note="Encontre profissionais. Organize suas obras. Faça a cena avançar.">
       <div className="auth-mobile-logo"><Logo /></div>
       <div className="eyebrow">BEM-VINDO DE VOLTA</div>
       <h2>Entre no seu espaço.</h2>
       <p className="auth-description">A cena continua se movendo enquanto você não para.</p>
-      <form onSubmit={(e) => { e.preventDefault(); navigate("/dashboard"); toast("Bem-vinda de volta, Marina"); }}>
+      <form onSubmit={(e) => { e.preventDefault(); startSession("user"); navigate("/dashboard"); toast("Bem-vinda de volta, Marina"); }}>
         <label>E-mail<input type="email" placeholder="voce@email.com" required /></label>
         <label>Senha
           <div className="password-wrap">
@@ -207,20 +219,21 @@ function LoginPage() {
         </label>
         <div className="form-row">
           <label className="check-label"><input type="checkbox" /> Lembrar de mim</label>
-          <a href="/central">Esqueci minha senha</a>
+          <button type="button" className="auth-forgot" onClick={() => toast("Vamos enviar as instruções para o seu e-mail.")}>Esqueci minha senha</button>
         </div>
         <button className="button button-lime full" type="submit">Entrar <ArrowUpRight size={17} /></button>
       </form>
       <div className="auth-divider"><span>ou</span></div>
-      <button className="button button-outline full" onClick={() => { navigate("/dashboard"); toast("Entrando como visitante"); }}>Entrar como visitante</button>
+      <button className="button button-outline full" onClick={() => { startSession("guest"); navigate("/dashboard"); toast("Entrando como visitante"); }}>Entrar como visitante</button>
       <div className="auth-theme-control" aria-label="Tema da interface"><span>Tema</span><button className={theme === "light" ? "active" : ""} onClick={() => setTheme("light")}>Claro</button><button className={theme === "dark" ? "active" : ""} onClick={() => setTheme("dark")}>Escuro</button></div>
-      <p className="auth-switch">Ainda não está no Cypher? <a href="/register">Criar conta</a></p>
+      <p className="auth-switch">Ainda não está no Cypher? <button type="button" onClick={() => { openRegister(); navigate("/register"); }}>Criar conta</button></p>
     </AuthFrame>
   );
 }
 
 function RegisterPage() {
   const [, navigate] = useLocation();
+  const { startSession } = useSession();
   const [selected, setSelected] = useState("Rapper / MC");
   const categories = ["Rapper / MC", "Beatmaker", "Produtor", "DJ", "Empreendedor", "Organizador de eventos", "Público / Fã"];
   return (
@@ -229,7 +242,7 @@ function RegisterPage() {
       <div className="eyebrow">PRIMEIRO PASSO</div>
       <h2>Crie seu espaço.</h2>
       <p className="auth-description">Escolha como você participa da cena underground.</p>
-      <form onSubmit={(e) => { e.preventDefault(); navigate("/dashboard"); toast("Perfil criado. Bem-vinda ao Cypher!"); }}>
+      <form onSubmit={(e) => { e.preventDefault(); startSession("user"); navigate("/dashboard"); toast("Perfil criado. Bem-vinda ao Cypher!"); }}>
         <label>Nome completo<input placeholder="Seu nome" required /></label>
         <label>E-mail<input type="email" placeholder="voce@email.com" required /></label>
         <div className="eyebrow category-label">SUA CATEGORIA</div>

@@ -47,3 +47,11 @@ A nova tela foi anexada à rota existente `/settings` e ao item já presente da 
 ## Verificação final de Configurações — tema e integração
 
 O login permanece visualmente intacto, com o novo seletor de tema discreto abaixo das ações existentes. O mesmo estado em memória do `ThemeProvider` é usado pelo login e por Configurações → Aparência, sem localStorage, sessionStorage, API ou backend. A rota `/settings` está ligada ao item Configurações já existente na sidebar. Arquivos da nova tela, contexto, entrypoint e estilos foram verificados; TypeScript e build de produção passaram.
+
+## Verificação de sessão obrigatória — 17/09/2026
+
+A abertura direta de `/settings` sem sessão redirecionou imediatamente para `/login`. O botão “Esqueci minha senha” agora permanece na tela de login, exibindo uma confirmação sem trocar de rota. O bloqueio é controlado por estado de sessão em memória; login, cadastro e entrada como visitante são os únicos caminhos que liberam o app.
+
+A opção “Entrar como visitante” foi testada: somente após o clique explícito o dashboard abriu e a sessão visitante foi criada. Assim, a abertura direta do produto não cria mais acesso implícito; o usuário sempre começa no Login.
+
+Abertura direta de `/register` também foi testada e redirecionou para `/login`; o cadastro continua disponível apenas pelo botão “Criar conta” dentro do Login. O bloqueio completo evita que links de recuperação ou URLs internas criem acesso implícito.
