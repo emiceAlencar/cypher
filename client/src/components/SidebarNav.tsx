@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import { useState, type ComponentType } from "react";
 import { Award, BookOpen, CalendarDays, ChevronDown, ChevronRight, Disc3, FileText, Home, Search, Settings2, UserRound } from "lucide-react";
 
 type IconType = ComponentType<{ size?: number; className?: string }>;
@@ -32,6 +32,8 @@ function NavLink({ item, active, onNavigate }: { item: NavItem; active: boolean;
 }
 
 export default function SidebarNav({ location, mobileNav, onClose, onNavigate }: SidebarNavProps) {
+  const [workspace, setWorkspace] = useState("Espaço de trabalho");
+
   return (
     <aside className={mobileNav ? "sidebar sidebar-open" : "sidebar"}>
       <div className="sidebar-top">
@@ -42,7 +44,15 @@ export default function SidebarNav({ location, mobileNav, onClose, onNavigate }:
           </a>
           <button className="icon-button mobile-close" onClick={onClose} aria-label="Fechar menu"><span aria-hidden="true">×</span></button>
         </div>
-        <div className="workspace-chip"><span className="status-dot" /> Espaço de trabalho <ChevronDown size={14} /></div>
+        <label className="workspace-chip" htmlFor="workspace-select">
+          <span className="status-dot" />
+          <select id="workspace-select" className="workspace-select" value={workspace} onChange={(event) => setWorkspace(event.target.value)} aria-label="Selecionar espaço de trabalho">
+            <option>Espaço de trabalho</option>
+            <option>Coletivo Linha 5</option>
+            <option>Estudos Cypher</option>
+          </select>
+          <ChevronDown size={14} aria-hidden="true" />
+        </label>
       </div>
       <nav className="side-nav" aria-label="Navegação principal">
         <span className="nav-label">NAVEGAR</span>
