@@ -9,3 +9,9 @@
 - Paleta aplicada: verde-lima #c8f22b, amarelo #ffd529, preto #10140f, branco/papel #f4f2eb.
 - TypeScript e build de produção passaram sem erros; aviso restante é apenas sobre tamanho do chunk e configuração pnpm legada do scaffold.
 - Correção aplicada: rota `/` agora usa o AppShell para exibir navegação completa desde a home.
+
+## Verificação da edição de 17/09/2026
+
+A sidebar aparece com a nova cor verde profunda #001403 e mantém o contraste adequado com links, reputação e avatar. A navegação foi extraída para `client/src/components/SidebarNav.tsx`, deixando o `AppShell` responsável apenas por estado de abertura/fechamento e layout geral; o partial possui `overflow-y: auto` para permitir rolagem independente quando o menu crescer.
+
+A busca rápida foi reposicionada para acompanhar a descrição do dashboard, formando um grupo contextual no cabeçalho em vez de ficar solta no canto superior direito. A tela de busca de pessoas permaneceu estável e visualmente alinhada. TypeScript, build de produção e integração estrutural passaram.

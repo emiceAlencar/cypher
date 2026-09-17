@@ -33,19 +33,10 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import SidebarNav from "./components/SidebarNav";
 import "./index.css";
 
 type IconType = typeof Home;
-type NavItem = { label: string; href: string; icon: IconType; badge?: string };
-
-const navItems: NavItem[] = [
-  { label: "Início", href: "/dashboard", icon: Home },
-  { label: "Buscar pessoas", href: "/search", icon: Search },
-  { label: "Oportunidades", href: "/events", icon: CalendarDays, badge: "4" },
-  { label: "Obras e créditos", href: "/works", icon: FileText },
-  { label: "Banco de Beats", href: "/beats", icon: Disc3 },
-  { label: "Cypher Central", href: "/central", icon: BookOpen },
-];
 
 const people = [
   { name: "Nina Sincera", role: "Rapper / MC", city: "São Paulo, SP", tag: "Rap alternativo", tone: "yellow", initials: "NS" },
@@ -101,28 +92,7 @@ function AppShell() {
   const content = getRouteContent(location);
   return (
     <div className="app-shell">
-      <aside className={mobileNav ? "sidebar sidebar-open" : "sidebar"}>
-        <div className="sidebar-top">
-          <div className="sidebar-brand-row"><Logo compact /><button className="icon-button mobile-close" onClick={() => setMobileNav(false)} aria-label="Fechar menu"><X size={18} /></button></div>
-          <div className="workspace-chip"><span className="status-dot" /> Espaço de trabalho <ChevronDown size={14} /></div>
-        </div>
-        <nav className="side-nav" aria-label="Navegação principal">
-          <span className="nav-label">NAVEGAR</span>
-          {navItems.map((item) => <NavLink key={item.href} item={item} active={location === item.href || (item.href === "/dashboard" && location === "/")} onNavigate={() => setMobileNav(false)} />)}
-          <span className="nav-label nav-label-spaced">SEU ESPAÇO</span>
-          <NavLink item={{ label: "Meu perfil", href: "/profile", icon: UserRound }} active={location === "/profile"} onNavigate={() => setMobileNav(false)} />
-          <NavLink item={{ label: "Configurações", href: "/settings", icon: Settings2 }} active={location === "/settings"} onNavigate={() => setMobileNav(false)} />
-        </nav>
-        <div className="sidebar-bottom">
-          <div className="reputation-mini">
-            <div className="mini-heading"><span>REPUTAÇÃO PROFISSIONAL</span><Award size={15} /></div>
-            <div className="rep-number">78<span>/100</span></div>
-            <div className="rep-bar"><i /></div>
-            <p>+6 desde sua última participação</p>
-          </div>
-          <div className="user-mini"><div className="avatar avatar-yellow">MC</div><div><strong>Marina Costa</strong><span>Rapper / MC</span></div><ChevronRight size={15} /></div>
-        </div>
-      </aside>
+      <SidebarNav location={location} mobileNav={mobileNav} onClose={() => setMobileNav(false)} onNavigate={() => setMobileNav(false)} />
       {mobileNav && <button className="mobile-overlay" onClick={() => setMobileNav(false)} aria-label="Fechar navegação" />}
       <main className="main-shell">
         <header className="topbar">
@@ -136,11 +106,6 @@ function AppShell() {
   );
 }
 
-function NavLink({ item, active, onNavigate }: { item: NavItem; active: boolean; onNavigate: () => void }) {
-  const Icon = item.icon;
-  return <a href={item.href} onClick={onNavigate} className={active ? "side-link active" : "side-link"}><Icon size={17} /><span>{item.label}</span>{item.badge && <b>{item.badge}</b>}</a>;
-}
-
 function getRouteContent(location: string) {
   if (location.startsWith("/search")) return { eyebrow: "Buscar pessoas", node: <SearchPage /> };
   if (location.startsWith("/events")) return { eyebrow: "Oportunidades", node: <EventsPage /> };
@@ -151,13 +116,13 @@ function getRouteContent(location: string) {
   return { eyebrow: "Visão geral", node: <DashboardPage /> };
 }
 
-function PageHeader({ eyebrow, title, description, action }: { eyebrow: string; title: ReactNode; description: string; action?: ReactNode }) {
-  return <div className="page-header"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div>{action}</div>;
+function PageHeader({ eyebrow, title, description, action, descriptionClassName }: { eyebrow: string; title: ReactNode; description: ReactNode; action?: ReactNode; descriptionClassName?: string }) {
+  return <div className="page-header"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p className={descriptionClassName}>{description}</p></div>{action}</div>;
 }
 
 function DashboardPage() {
   return <div className="dashboard-page">
-    <PageHeader eyebrow="QUARTA-FEIRA · 09 OUT 2024" title={<>A cena se move quando<br /><em>a gente se conecta.</em></>} description="Bom te ver, Marina. Aqui está o que está acontecendo no seu espaço." action={<button className="button button-dark" onClick={() => toast("Busca rápida ativada") }><Search size={17} /> Busca rápida <span className="shortcut">⌘ K</span></button>} />
+    <PageHeader eyebrow="QUARTA-FEIRA · 09 OUT 2024" title={<>A cena se move quando<br /><em>a gente se conecta.</em></>} descriptionClassName="dashboard-description" description={<><span>Bom te ver, Marina. Aqui está o que está acontecendo no seu espaço.</span><button className="button button-dark" onClick={() => toast("Busca rápida ativada")}><Search size={17} /> Busca rápida <span className="shortcut">⌘ K</span></button></>} />
     <section className="hero-grid">
       <div className="hero-card lime-card"><div className="hero-card-top"><span className="pill pill-dark">SEU CICLO</span><ArrowUpRight size={20} /></div><h2>Descobrir.<br />Conectar.<br /><span>Criar.</span></h2><p>O Cypher organiza o caminho entre uma oportunidade e a próxima obra.</p><div className="cycle-stamp"><span>01</span><div><strong>Próximo passo</strong><b>Encontrar colaboradores</b></div><ChevronRight size={18} /></div></div>
       <div className="stat-stack"><StatCard label="Obras em andamento" value="03" detail="+1 este mês" icon={FileText} accent="yellow" /><StatCard label="Conexões profissionais" value="28" detail="4 aguardando resposta" icon={UsersRound} accent="white" /></div>

@@ -39,7 +39,9 @@ a { color: inherit; text-decoration: none; }
 button, a, input, select, textarea { outline-color: var(--lime); }
 
 .app-shell { min-height: 100vh; display: flex; background: var(--paper); }
-.sidebar { width: 252px; min-height: 100vh; position: fixed; left: 0; top: 0; bottom: 0; z-index: 20; display: flex; flex-direction: column; padding: 26px 16px 17px; background: var(--ink); color: #f1f2e9; }
+.sidebar { width: 252px; min-height: 100vh; max-height: 100vh; position: fixed; left: 0; top: 0; bottom: 0; z-index: 20; display: flex; flex-direction: column; overflow-y: auto; padding: 26px 16px 17px; background: #001403; color: #f1f2e9; scrollbar-width: thin; scrollbar-color: #29452d transparent; }
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { border-radius: 10px; background: #29452d; }
 .sidebar-top { padding: 0 10px; }
 .sidebar-brand-row { display: flex; align-items: center; justify-content: space-between; }
 .logo { display: flex; align-items: center; gap: 9px; color: var(--ink); font-family: "Space Grotesk", sans-serif; font-weight: 800; letter-spacing: -.06em; font-size: 25px; }
@@ -92,6 +94,9 @@ button, a, input, select, textarea { outline-color: var(--lime); }
 .page-header h1 { margin: 9px 0 8px; color: var(--ink); font-family: "Space Grotesk", sans-serif; font-size: clamp(35px, 4vw, 58px); line-height: .98; letter-spacing: -.075em; font-weight: 700; }
 .page-header h1 em { color: #84ac18; font-style: normal; }
 .page-header p { max-width: 525px; margin: 0; color: #7c8579; font-size: 14px; line-height: 1.6; }
+.dashboard-description { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; max-width: 790px !important; }
+.dashboard-description > span { flex: 1 1 320px; }
+.dashboard-description .button { flex: 0 0 auto; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 0 17px; border-radius: 9px; font-size: 12px; font-weight: 700; cursor: pointer; transition: transform .15s ease, box-shadow .18s ease, background .18s ease; white-space: nowrap; }
 .button:hover { box-shadow: 0 9px 18px rgba(16,20,15,.12); }
 .button-dark { background: var(--ink); color: var(--white); }
