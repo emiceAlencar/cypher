@@ -98,7 +98,7 @@ function AppShell() {
         <header className="topbar">
           <button className="icon-button mobile-menu" onClick={() => setMobileNav(true)} aria-label="Abrir menu"><Menu size={20} /></button>
           <div className="breadcrumbs"><span>Workspace</span><ChevronRight size={14} /><strong>{content.eyebrow}</strong></div>
-          <div className="topbar-actions"><button className="icon-button" onClick={() => toast("Você está em dia — nenhuma notificação nova.")} aria-label="Notificações"><Bell size={18} /><i className="notification-dot" /></button><div className="topbar-avatar">MC</div></div>
+          <div className="topbar-actions">{(location === "/" || location === "/dashboard") && <button className="topbar-search" onClick={() => toast("Busca rápida ativada")} aria-label="Buscar"><Search size={16} /> Buscar <span className="shortcut">⌘ K</span></button>}<button className="icon-button" onClick={() => toast("Você está em dia — nenhuma notificação nova.")} aria-label="Notificações"><Bell size={18} /><i className="notification-dot" /></button><div className="topbar-avatar">MC</div></div>
         </header>
         <div className="page-content">{content.node}</div>
       </main>
@@ -122,7 +122,7 @@ function PageHeader({ eyebrow, title, description, action, descriptionClassName 
 
 function DashboardPage() {
   return <div className="dashboard-page">
-    <PageHeader eyebrow="QUARTA-FEIRA · 09 OUT 2024" title={<>A cena se move quando<br /><em>a gente se conecta.</em></>} descriptionClassName="dashboard-description" description={<><span>Bom te ver, Marina. Aqui está o que está acontecendo no seu espaço.</span><button className="button button-dark dashboard-search-button" onClick={() => toast("Busca rápida ativada")} aria-label="Buscar"><Search size={17} /> Buscar <span className="shortcut">⌘ K</span></button></>} />
+    <PageHeader eyebrow="QUARTA-FEIRA · 09 OUT 2024" title={<>A cena se move quando<br /><em>a gente se conecta.</em></>} description="Bom te ver, Marina. Aqui está o que está acontecendo no seu espaço." />
     <section className="hero-grid">
       <div className="hero-card lime-card"><div className="hero-card-top"><span className="pill pill-dark">SEU CICLO</span><ArrowUpRight size={20} /></div><h2>Descobrir.<br />Conectar.<br /><span>Criar.</span></h2><p>O Cypher organiza o caminho entre uma oportunidade e a próxima obra.</p><div className="cycle-stamp"><span>01</span><div><strong>Próximo passo</strong><b>Encontrar colaboradores</b></div><ChevronRight size={18} /></div></div>
       <div className="stat-stack"><StatCard label="Obras em andamento" value="03" detail="+1 este mês" icon={FileText} accent="yellow" /><StatCard label="Conexões profissionais" value="28" detail="4 aguardando resposta" icon={UsersRound} accent="white" /></div>

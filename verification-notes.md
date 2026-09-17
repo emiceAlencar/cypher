@@ -23,3 +23,11 @@ O workspace deixou de ser um `div` estático e agora é um `<select>` controlado
 ## Verificação da edição de 17/09/2026 — perfil e busca
 
 A home mostra o botão `Buscar` com lupa no header contextual, mantendo o alinhamento do texto introdutório e o estilo geral escuro/lima. O bloco Marina Costa na sidebar agora é clicável e leva à página Meu perfil; a captura confirmou o estado ativo do item de navegação e o carregamento correto do perfil.
+
+## Verificação da edição de 17/09/2026 — busca no header
+
+A captura desktop confirmou o botão `Buscar` no topbar, com fundo bege levemente mais escuro, lupa e atalho. Na captura mobile, o header ainda funcionou, mas `Visão geral` quebrou em duas linhas e o atalho ocupou espaço excessivo; foi identificado um ajuste responsivo necessário para compactar o breadcrumb e esconder o atalho em telas estreitas.
+
+## Verificação da edição de 17/09/2026 — ajuste mobile do header
+
+O header mobile foi compactado: o breadcrumb agora mantém uma linha truncada sem quebra, o botão `Buscar` permanece legível com lupa e o atalho `⌘ K` é ocultado apenas em telas estreitas para evitar compressão. A nova captura mobile confirmou o resultado; TypeScript e build de produção passaram.
