@@ -101,3 +101,9 @@ O bloco de autenticação também recebeu adaptação dark coerente: painel, cam
 O `ThemeContext` passou a ler e gravar `cypher-theme` no `localStorage`, atualizar a classe `.dark` e expor `data-theme` no elemento raiz. Foram criados tokens compartilhados (`--bg-primary`, `--bg-surface`, `--text-primary`, `--text-secondary`, `--border-color` e tokens do painel de branding) para que o painel esquerdo e o formulário respondam ao mesmo estado de tema.
 
 A validação visual confirmou: Claro com painel de branding escuro e formulário claro; Escuro com ambas as colunas em superfícies escuras coerentes; retorno para Claro; e recarregamento mantendo o tema Escuro via `localStorage`. Inputs, labels, títulos, divisórias e botões mantiveram contraste adequado. TypeScript e build passaram.
+
+## Auditoria de harmonia visual do perfil — 24/09/2026
+
+A revisão identificou inconsistências no tema escuro em textos de biografia, metadados, divisórias, setup, chips, reputação e botões secundários. Foi adicionada uma camada semântica de superfícies, texto muted/subtle e bordas suaves, com overrides específicos para `profile-hero`, `profile-section`, `profile-info-grid`, `profile-work`, `gear-list`, cards e ações do perfil.
+
+A validação visual comparou o perfil em Claro e Escuro. No Claro, as superfícies permanecem claras e os acentos lime/amarelo continuam hierarquizados. No Escuro, o fundo, hero, cards, tipografia, chips, metadados e botões agora formam uma composição escura contínua, com contraste reforçado e sem blocos claros deslocados. TypeScript e build passaram.

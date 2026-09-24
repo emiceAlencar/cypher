@@ -344,3 +344,51 @@ html, body, #root { background: var(--bg-primary); color: var(--text-primary); t
 .auth-divider { color: var(--text-secondary); }
 .button-outline { color: var(--text-primary); border-color: var(--border-color); background: transparent; }
 .auth-theme-control button.active { color: #10140f; }
+
+
+/* Final theme harmony — profile and shared content surfaces */
+:root {
+  --surface-soft: #fffefa;
+  --surface-raised: #f7f8f2;
+  --text-muted: #697568;
+  --text-subtle: #929b91;
+  --border-soft: #eceee8;
+}
+.dark {
+  --surface-soft: #1a2118;
+  --surface-raised: #202b1f;
+  --text-muted: #b7c6b1;
+  --text-subtle: #9eae99;
+  --border-soft: #334232;
+}
+.card-surface, .profile-card, .event-card, .beat-card, .works-table { background: var(--surface-soft); }
+.profile-section.card-surface { border-color: var(--border-soft); }
+.dark .profile-hero { color: #eef5ea; background: #0a100b; }
+.dark .profile-kicker { color: #b6c8af; }
+.dark .profile-hero-main p { color: #b0c0aa; }
+.dark .profile-hero-main p span { color: #6f806a; }
+.dark .tag-line.big span { color: #d1dfc9; background: #263525; }
+.dark .profile-section { color: #eef2e7; }
+.dark .profile-section h3, .dark .profile-section strong { color: #eef2e7; }
+.dark .profile-section .bio { color: #c0cdbb; }
+.dark .profile-info-grid { border-color: var(--border-soft); }
+.dark .profile-info-grid span { color: #a5b5a0; }
+.dark .profile-info-grid strong { color: #eef2e7; }
+.dark .profile-work { border-color: var(--border-soft); }
+.dark .profile-work strong { color: #eef2e7; }
+.dark .profile-work > div:nth-child(2) span { color: #a6b6a1; }
+.dark .profile-work > .status-label { color: #b1c1aa; }
+.dark .gear-list span { color: #c0cdbb; }
+.dark .gear-list svg { color: #b2c3aa; }
+.dark .profile-section .button-outline { color: #e7f1e3; border-color: #53664f; }
+.dark .profile-rep { border-color: #354633; }
+.dark .profile-rep span, .dark .profile-rep small { color: #a8b9a1; }
+.dark .profile-column-side .lime-mini { color: #10140f; background: var(--lime); }
+.dark .profile-column-side .lime-mini p { color: rgba(16,20,15,.72); }
+.dark .profile-card-body, .dark .profile-card { background: var(--surface-soft); }
+.dark .profile-detail { color: #b1c1ac; }
+.dark .profile-card-body .role-line { color: #a8b8a2; }
+.dark .profile-card-body h3 { color: #eef2e7; }
+.dark .profile-card-actions .border-button { color: #d0decb; border-color: #53664f; }
+.dark .profile-card-actions .border-button:hover { color: #10140f; background: var(--lime); }
+.dark .profile-info-grid, .dark .profile-work { background: transparent; }
