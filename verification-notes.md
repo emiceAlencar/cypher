@@ -107,3 +107,7 @@ A validação visual confirmou: Claro com painel de branding escuro e formulári
 A revisão identificou inconsistências no tema escuro em textos de biografia, metadados, divisórias, setup, chips, reputação e botões secundários. Foi adicionada uma camada semântica de superfícies, texto muted/subtle e bordas suaves, com overrides específicos para `profile-hero`, `profile-section`, `profile-info-grid`, `profile-work`, `gear-list`, cards e ações do perfil.
 
 A validação visual comparou o perfil em Claro e Escuro. No Claro, as superfícies permanecem claras e os acentos lime/amarelo continuam hierarquizados. No Escuro, o fundo, hero, cards, tipografia, chips, metadados e botões agora formam uma composição escura contínua, com contraste reforçado e sem blocos claros deslocados. TypeScript e build passaram.
+
+## Correção do cartão de perfil na sidebar — 24/09/2026
+
+A edição automática havia inserido vários atributos `style` duplicados no mesmo elemento, causando seis erros de TypeScript. O cartão foi restaurado para JSX válido, com o contraste novamente controlado pelas classes existentes: nome em branco, função em tom secundário e ícone de navegação em tom muted sobre a sidebar verde. TypeScript, build e inspeção visual do perfil passaram.
