@@ -69,3 +69,7 @@ A sidebar foi convertida de anchors HTML para links SPA do Wouter, evitando relo
 O seletor anterior de workspace foi substituído por “Meu status”. Na sessão de Rapper/MC, o menu exibe apenas status compatíveis, permite múltiplas seleções e apresenta campo “Criar status próprio”. A tela de Configurações mostra os status selecionados no Dashboard e Perfil por meio do componente reutilizável `StatusChips`; o fluxo foi conferido no navegador.
 
 A lista de Rapper/MC foi aberta no navegador e apresentou os nove status previstos, com seleção múltipla e campo para status próprio. O status atual permaneceu visível no gatilho “Meu status” enquanto o menu estava aberto.
+
+## Verificação de capacidades editáveis — 24/09/2026
+
+A seção Perfil Profissional agora exibe oito capacidades padrão, permite selecionar e remover capacidades do perfil, oferece o campo “Criar capacidade personalizada” e o botão “Enviar para análise”. A interface explica que somente capacidades aprovadas aparecem no perfil público; capacidades personalizadas ficam em estado separado de análise e não são adicionadas automaticamente.

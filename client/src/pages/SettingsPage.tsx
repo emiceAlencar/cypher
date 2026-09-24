@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { useLocation } from "wouter";
 import { useTheme, type Theme } from "../contexts/ThemeContext";
 import { useSession } from "../contexts/SessionContext";
+import { useCapabilities } from "../contexts/CapabilitiesContext";
 
 type ToggleProps = { label: string; description: string; checked: boolean; onChange: () => void };
 
@@ -35,6 +36,7 @@ export default function SettingsPage() {
   const [, navigate] = useLocation();
   const { theme, setTheme } = useTheme();
   const { endSession } = useSession();
+  const { availableCapabilities, capabilities, pendingCapabilities, toggleCapability, requestCapability } = useCapabilities();
   const [activeSection, setActiveSection] = useState("Conta");
   const [publicProfile, setPublicProfile] = useState(true);
   const [searchable, setSearchable] = useState(true);
@@ -68,6 +70,7 @@ export default function SettingsPage() {
 
         <SettingsSection id="settings-1" eyebrow="02 · PERFIL PROFISSIONAL" title="Como você aparece" description="Mantenha sua identidade profissional clara para a cena.">
           <div className="settings-link-list">{profileLinks.map(({ label, description, href, icon: Icon }) => <a className="settings-link-row" href={href} key={label}><span className="settings-link-icon"><Icon size={17} /></span><span><strong>{label}</strong><small>{description}</small></span><ChevronRight size={17} /></a>)}</div>
+          <CapabilitiesEditor available={availableCapabilities} selected={capabilities} pending={pendingCapabilities} onToggle={toggleCapability} onRequest={(value) => { const accepted = requestCapability(value); toast(accepted ? "Capacidade enviada para análise." : "Essa capacidade já está disponível ou em análise."); }} />
         </SettingsSection>
 
         <SettingsSection id="settings-2" eyebrow="03 · PRIVACIDADE E VISIBILIDADE" title="Você decide o que aparece" description="Controles simples para sua presença profissional.">
@@ -102,6 +105,12 @@ function SettingsSection({ id, eyebrow, title, description, children }: { id: st
 }
 
 function SettingData({ label, value }: { label: string; value: string }) { return <div className="settings-data"><span>{label}</span><strong>{value}</strong></div>; }
+
+function CapabilitiesEditor({ available, selected, pending, onToggle, onRequest }: { available: string[]; selected: string[]; pending: string[]; onToggle: (value: string) => void; onRequest: (value: string) => void }) {
+  const [custom, setCustom] = useState("");
+  const submit = () => { if (custom.trim()) { onRequest(custom); setCustom(""); } };
+  return <div className="capabilities-editor"><div className="capabilities-editor-heading"><div><span>CAPACIDADES PROFISSIONAIS</span><small>Escolha o que representa seu trabalho. Apenas capacidades aprovadas aparecem no perfil público.</small></div><UserRound size={17} /></div><div className="capability-selector">{available.map((capability) => <button key={capability} className={selected.includes(capability) ? "capability-option selected" : "capability-option"} onClick={() => onToggle(capability)}>{capability}{selected.includes(capability) && <Check size={13} />}</button>)}</div><div className="capability-custom-row"><input value={custom} onChange={(event) => setCustom(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") submit(); }} placeholder="Criar capacidade personalizada" maxLength={42} /><button className="button button-dark small" onClick={submit}>Enviar para análise</button></div>{pending.length > 0 && <div className="capability-pending"><span>EM ANÁLISE</span>{pending.map((capability) => <small key={capability}>{capability}</small>)}<p>Capacidades criadas por você entram em análise antes de aparecer no perfil.</p></div>}</div>;
+}
 
 function ThemeOption({ value, current, icon, title, description, onChoose }: { value: Theme; current: Theme; icon: ReactNode; title: string; description: string; onChoose: (value: Theme) => void }) {
   return <button className={current === value ? "theme-option selected" : "theme-option"} onClick={() => onChoose(value)} aria-pressed={current === value}><span className="theme-option-icon">{icon}</span><span><strong>{title}</strong><small>{description}</small></span>{current === value && <Check size={16} />}</button>;
