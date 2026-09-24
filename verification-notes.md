@@ -95,3 +95,9 @@ O padding de 8px e a largura de 190px foram movidos do JSX para o CSS, evitando 
 O cadastro agora mantém uma lista de categorias selecionadas, permite adicionar e remover múltiplas categorias, usa `aria-pressed` para comunicar o estado e impede continuar sem nenhuma categoria. A validação visual confirmou Rapper / MC, Beatmaker e Produtor selecionados simultaneamente sem desmarcar os anteriores.
 
 O bloco de autenticação também recebeu adaptação dark coerente: painel, campos, labels, placeholders, divisórias e opções de categoria usam superfícies e contrastes apropriados. O fluxo Login → Escuro → Cadastro foi testado visualmente.
+
+## Correção de alternância global de tema no Login — 24/09/2026
+
+O `ThemeContext` passou a ler e gravar `cypher-theme` no `localStorage`, atualizar a classe `.dark` e expor `data-theme` no elemento raiz. Foram criados tokens compartilhados (`--bg-primary`, `--bg-surface`, `--text-primary`, `--text-secondary`, `--border-color` e tokens do painel de branding) para que o painel esquerdo e o formulário respondam ao mesmo estado de tema.
+
+A validação visual confirmou: Claro com painel de branding escuro e formulário claro; Escuro com ambas as colunas em superfícies escuras coerentes; retorno para Claro; e recarregamento mantendo o tema Escuro via `localStorage`. Inputs, labels, títulos, divisórias e botões mantiveram contraste adequado. TypeScript e build passaram.

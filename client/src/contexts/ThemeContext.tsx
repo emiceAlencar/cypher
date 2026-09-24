@@ -23,7 +23,9 @@ export function ThemeProvider({
   switchable = false,
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
-    return defaultTheme;
+    if (typeof window === "undefined") return defaultTheme;
+    const stored = window.localStorage.getItem("cypher-theme");
+    return stored === "dark" || stored === "light" ? stored : defaultTheme;
   });
 
   useEffect(() => {
@@ -33,8 +35,9 @@ export function ThemeProvider({
     } else {
       root.classList.remove("dark");
     }
-
-  }, [theme, switchable]);
+    root.dataset.theme = theme;
+    window.localStorage.setItem("cypher-theme", theme);
+  }, [theme]);
 
   const toggleTheme = switchable
     ? () => {
