@@ -63,3 +63,9 @@ O botão principal de Login recebeu texto e ícone em preto (`#000000`) sobre o 
 ## Correção da navegação para Configurações — 17/09/2026
 
 A sidebar foi convertida de anchors HTML para links SPA do Wouter, evitando reload e perda da sessão em memória. Também foi adicionada persistência limitada à aba via `sessionStorage`, removida no logout. Teste no navegador: após entrar explicitamente como visitante, clicar em Configurações abriu `/settings` normalmente, sem retornar ao Login.
+
+## Verificação da funcionalidade de status — 24/09/2026
+
+O seletor anterior de workspace foi substituído por “Meu status”. Na sessão de Rapper/MC, o menu exibe apenas status compatíveis, permite múltiplas seleções e apresenta campo “Criar status próprio”. A tela de Configurações mostra os status selecionados no Dashboard e Perfil por meio do componente reutilizável `StatusChips`; o fluxo foi conferido no navegador.
+
+A lista de Rapper/MC foi aberta no navegador e apresentou os nove status previstos, com seleção múltipla e campo para status próprio. O status atual permaneceu visível no gatilho “Meu status” enquanto o menu estava aberto.
