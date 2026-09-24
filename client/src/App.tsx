@@ -237,7 +237,7 @@ function LoginPage() {
 function RegisterPage() {
   const [, navigate] = useLocation();
   const { startSession } = useSession();
-  const [selected, setSelected] = useState("Rapper / MC");
+  const [selected, setSelected] = useState<string[]>(["Rapper / MC"]);
   const categories = ["Rapper / MC", "Beatmaker", "Produtor", "DJ", "Empreendedor", "Organizador de eventos", "Público / Fã"];
   return (
     <AuthFrame note="Um perfil profissional bem cuidado é o começo de novas oportunidades.">
@@ -245,14 +245,14 @@ function RegisterPage() {
       <div className="eyebrow">PRIMEIRO PASSO</div>
       <h2>Crie seu espaço.</h2>
       <p className="auth-description">Escolha como você participa da cena underground.</p>
-      <form onSubmit={(e) => { e.preventDefault(); startSession("user"); navigate("/dashboard"); toast("Perfil criado. Bem-vinda ao Cypher!"); }}>
+      <form onSubmit={(e) => { e.preventDefault(); if (!selected.length) { toast("Selecione pelo menos uma categoria."); return; } startSession("user"); navigate("/dashboard"); toast(`Perfil criado com ${selected.length} categoria${selected.length > 1 ? "s" : ""}. Bem-vinda ao Cypher!`); }}>
         <label>Nome completo<input placeholder="Seu nome" required /></label>
         <label>E-mail<input type="email" placeholder="voce@email.com" required /></label>
         <div className="eyebrow category-label">SUA CATEGORIA</div>
         <div className="category-grid">
           {categories.map((cat) => (
-            <button type="button" key={cat} className={selected === cat ? "category-option selected" : "category-option"} onClick={() => setSelected(cat)}>
-              {cat}{selected === cat && <span>✓</span>}
+            <button type="button" key={cat} aria-pressed={selected.includes(cat)} className={selected.includes(cat) ? "category-option selected" : "category-option"} onClick={() => setSelected((current) => current.includes(cat) ? current.filter((item) => item !== cat) : [...current, cat])}>
+              {cat}{selected.includes(cat) && <span>✓</span>}
             </button>
           ))}
         </div>

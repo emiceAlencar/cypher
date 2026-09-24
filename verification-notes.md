@@ -89,3 +89,9 @@ No tema escuro, o contraste foi reforçado em navegação lateral, status, texto
 ## Ajuste compacto do menu de status — 24/09/2026
 
 O padding de 8px e a largura de 190px foram movidos do JSX para o CSS, evitando estilos inline e mantendo o componente escalável. A regra mobile continua usando largura automática. A validação visual com o tema escuro e o menu aberto confirmou que os itens, o campo de criação e o botão de adicionar permanecem legíveis e acessíveis. TypeScript e build passaram.
+
+## Categorias multiselecionáveis e harmonia no cadastro — 24/09/2026
+
+O cadastro agora mantém uma lista de categorias selecionadas, permite adicionar e remover múltiplas categorias, usa `aria-pressed` para comunicar o estado e impede continuar sem nenhuma categoria. A validação visual confirmou Rapper / MC, Beatmaker e Produtor selecionados simultaneamente sem desmarcar os anteriores.
+
+O bloco de autenticação também recebeu adaptação dark coerente: painel, campos, labels, placeholders, divisórias e opções de categoria usam superfícies e contrastes apropriados. O fluxo Login → Escuro → Cadastro foi testado visualmente.

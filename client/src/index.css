@@ -283,3 +283,21 @@ button, a, input, select, textarea { outline-color: var(--lime); }
 /* Status menu compact spacing — responsive without inline overrides */
 .status-menu { width: 190px; padding: 8px; }
 @media (max-width: 820px) { .status-menu { width: auto; } }
+
+
+/* Auth theme harmony — registration categories and panel adapt together */
+.dark .auth-page { background: #0f150f; }
+.dark .auth-art { color: #eef5ea; background: #0a100b; }
+.dark .auth-panel { color: #eef2e7; background: #141b14; }
+.dark .auth-panel-inner h2 { color: #eef2e7; }
+.dark .auth-description, .dark .auth-switch, .dark .auth-corner { color: #afbea9; }
+.dark .auth-panel label { color: #c0cfbb; }
+.dark .auth-panel input { color: #eef5ea; border-color: #3a4b38; background: #1c271c; }
+.dark .auth-panel input::placeholder { color: #91a28d; }
+.dark .password-wrap button { color: #b0c0aa; }
+.dark .check-label { color: #aebda8 !important; }
+.dark .auth-divider { color: #9dad98; }.dark .auth-divider::before, .dark .auth-divider::after { background: #354433; }
+.dark .category-option { color: #c0cfba; border-color: #40513d; background: #1a251a; }
+.dark .category-option:hover { color: #eef5ea; border-color: #668149; background: #263525; }
+.dark .category-option.selected { color: #10140f; border-color: var(--lime); background: #b8df29; }
+.dark .category-option span { color: #23301e; }
