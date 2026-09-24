@@ -79,3 +79,9 @@ A seção Perfil Profissional agora exibe oito capacidades padrão, permite sele
 A auditoria encontrou inversões semânticas no tema escuro: `var(--ink)` se tornava claro em superfícies que deveriam permanecer pretas, e componentes claros do tema original permaneciam em cards, filtros, inputs, chips, bordas e opções de configuração. Foram adicionados overrides dark específicos para separar superfícies profundas, neutras e acentos lime/amarelo.
 
 A validação visual confirmou o tema escuro em Configurações e Busca com cards neutros escuros, superfícies pretas preservadas, bordas suaves e acentos controlados. O retorno ao tema Claro também foi testado e permaneceu funcional, sem regressão visual aparente. TypeScript e build passaram.
+
+## Correção de contraste e menu de status — 24/09/2026
+
+A edição visual havia gerado múltiplos atributos `style` nos elementos do menu de status, quebrando o JSX. O bloco foi restaurado sem estilos inline duplicados, preservando a compactação por CSS. A validação confirmou o menu abrindo com status legíveis, campo de status próprio e ações funcionais.
+
+No tema escuro, o contraste foi reforçado em navegação lateral, status, textos auxiliares de configurações, descrições, labels, campos, placeholders, reputação e modal. A captura com o tema escuro ativo e o menu de status aberto confirmou leitura confortável sem transformar os acentos em excesso de lime.

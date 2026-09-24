@@ -52,7 +52,30 @@ export default function SidebarNav({ location, mobileNav, onClose, onNavigate }:
         </div>
         <div className="status-control">
           <button className="status-trigger" onClick={() => setStatusOpen(!statusOpen)} aria-expanded={statusOpen} aria-controls="status-menu"><span className="status-dot" /><span><small>MEU STATUS</small><strong>{primaryStatus}</strong></span><ChevronDown size={14} aria-hidden="true" /></button>
-          {statusOpen && <div className="status-menu" id="status-menu"><div className="status-menu-heading"><span>SELECIONE SEUS STATUS</span><button onClick={() => setStatusOpen(false)} aria-label="Fechar status"><X size={14} /></button></div><p className="status-menu-copy">Visível no seu perfil e no dashboard.</p><div className="status-options">{availableStatuses.map((status) => <button key={status} className={selectedStatuses.includes(status) ? "status-option selected" : "status-option"} onClick={() => toggleStatus(status)}><span>{status}</span>{selectedStatuses.includes(status) && <Check size={14} />}</button>)}</div><div className="status-custom"><input value={customStatus} onChange={(event) => setCustomStatus(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") submitCustomStatus(); }} placeholder="Criar status próprio" maxLength={42} /><button onClick={submitCustomStatus} aria-label="Adicionar status"><Plus size={15} /></button></div>{customStatuses.map((status) => <button key={status} className="status-remove" onClick={() => removeStatus(status)}>Remover “{status}”</button>)}</div>}
+          {statusOpen && (
+            <div className="status-menu" id="status-menu">
+              <div className="status-menu-heading">
+                <span>SELECIONE SEUS STATUS</span>
+                <button onClick={() => setStatusOpen(false)} aria-label="Fechar status"><X size={14} /></button>
+              </div>
+              <p className="status-menu-copy">Visível no seu perfil e no dashboard.</p>
+              <div className="status-options">
+                {availableStatuses.map((status) => (
+                  <button key={status} className={selectedStatuses.includes(status) ? "status-option selected" : "status-option"} onClick={() => toggleStatus(status)}>
+                    <span>{status}</span>
+                    {selectedStatuses.includes(status) && <Check size={14} />}
+                  </button>
+                ))}
+              </div>
+              <div className="status-custom">
+                <input value={customStatus} onChange={(event) => setCustomStatus(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") submitCustomStatus(); }} placeholder="Criar status próprio" maxLength={42} />
+                <button onClick={submitCustomStatus} aria-label="Adicionar status"><Plus size={15} /></button>
+              </div>
+              {customStatuses.map((status) => (
+                <button key={status} className="status-remove" onClick={() => removeStatus(status)}>Remover “{status}”</button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <nav className="side-nav" aria-label="Navegação principal">

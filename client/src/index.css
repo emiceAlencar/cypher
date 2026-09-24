@@ -251,3 +251,30 @@ button, a, input, select, textarea { outline-color: var(--lime); }
 
 /* Dark semantic surfaces: preserve true black/green surfaces instead of inverting to light ink */
 .dark .button-dark, .dark .pill-dark, .dark .round-arrow.dark { color: #eef2e7; background: #0a100b; border-color: #0a100b; }.dark .button-dark:hover, .dark .round-arrow.dark:hover { background: #18241a; }.dark .accent-note, .dark .event-side, .dark .work-overview-card.dark, .dark .beat-art-black, .dark .account-summary { color: #eef2e7; background: #0a100b; }.dark .profile-card-top.tone-black, .dark .tone-black { color: #eef2e7; background: #0a100b; }.dark .avatar-black, .dark .index-2 { color: #eef2e7; background: #0a100b; }.dark .account-summary > div:nth-child(2) span { color: #9cae99; }.dark .profile-card-top.tone-black .dots-button { color: rgba(238,242,231,.7); }.dark .profile-card-top.tone-black .availability { color: #9cae99; }.dark .hero-card h2 span { color: #f0f5e9; }.dark .stat-yellow, .dark .band-yellow, .dark .date-yellow { color: #10140f; }.dark .profile-card-top.tone-cream, .dark .tone-cream { background: #344331; color: #dce8d6; }
+
+
+/* Dark contrast pass — readable secondary text without flattening the hierarchy */
+.dark .sidebar .nav-label { color: #9aaa95; }
+.dark .sidebar .side-link { color: #c0ceba; }
+.dark .sidebar .side-link:hover { color: #f0f6ea; background: #1d2b1e; }
+.dark .sidebar .side-link.active { color: #10140f; }
+.dark .sidebar .workspace-select, .dark .sidebar .workspace-chip { color: #b9c9b3; }
+.dark .sidebar .status-trigger small { color: #9aaa95; }
+.dark .sidebar .status-trigger strong { color: #e2ecdc; }
+.dark .sidebar .status-trigger > svg { color: #b2c2ac; }
+.dark .status-menu { color: #e6f0e2; background: #142116; border-color: #52664d; }
+.dark .status-menu-heading, .dark .status-menu-heading button { color: #c1d0ba; }
+.dark .status-menu-copy { color: #aebea8; }
+.dark .status-option { color: #c7d5c1; }
+.dark .status-option:hover { color: #f3f8ef; background: #27412a; }
+.dark .status-custom input { color: #eef5eb; background: #0d180f; border-color: #53684d; }
+.dark .status-custom input::placeholder { color: #9eb09a; }
+.dark .status-remove { color: #e0a49a; }
+.dark .status-view-heading > span, .dark .capability-view-heading span, .dark .settings-field > span, .dark .settings-subhead > span { color: #a8b9a2; }
+.dark .status-empty, .dark .capabilities-editor-heading small, .dark .capability-view-heading a { color: #aebda8; }
+.dark .settings-section-heading p, .dark .settings-toggle-copy small, .dark .settings-link-row small, .dark .settings-data span, .dark .settings-subhead small, .dark .settings-version { color: #aab9a4; }
+.dark .settings-index-label, .dark .settings-index-link, .dark .settings-index-link span { color: #a5b6a0; }
+.dark .settings-index-link:hover { color: #eff6ea; }
+.dark .modal-copy, .dark .modal-field { color: #afbea9; }
+.dark .modal-field input::placeholder { color: #9caf99; }
+.dark .reputation-mini .mini-heading, .dark .reputation-mini p, .dark .user-mini span { color: #9cac96; }
