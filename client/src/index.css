@@ -278,3 +278,8 @@ button, a, input, select, textarea { outline-color: var(--lime); }
 .dark .modal-copy, .dark .modal-field { color: #afbea9; }
 .dark .modal-field input::placeholder { color: #9caf99; }
 .dark .reputation-mini .mini-heading, .dark .reputation-mini p, .dark .user-mini span { color: #9cac96; }
+
+
+/* Status menu compact spacing — responsive without inline overrides */
+.status-menu { width: 190px; padding: 8px; }
+@media (max-width: 820px) { .status-menu { width: auto; } }

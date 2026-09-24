@@ -85,3 +85,7 @@ A validação visual confirmou o tema escuro em Configurações e Busca com card
 A edição visual havia gerado múltiplos atributos `style` nos elementos do menu de status, quebrando o JSX. O bloco foi restaurado sem estilos inline duplicados, preservando a compactação por CSS. A validação confirmou o menu abrindo com status legíveis, campo de status próprio e ações funcionais.
 
 No tema escuro, o contraste foi reforçado em navegação lateral, status, textos auxiliares de configurações, descrições, labels, campos, placeholders, reputação e modal. A captura com o tema escuro ativo e o menu de status aberto confirmou leitura confortável sem transformar os acentos em excesso de lime.
+
+## Ajuste compacto do menu de status — 24/09/2026
+
+O padding de 8px e a largura de 190px foram movidos do JSX para o CSS, evitando estilos inline e mantendo o componente escalável. A regra mobile continua usando largura automática. A validação visual com o tema escuro e o menu aberto confirmou que os itens, o campo de criação e o botão de adicionar permanecem legíveis e acessíveis. TypeScript e build passaram.
